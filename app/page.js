@@ -1,20 +1,5 @@
-import Users from "./tableUsers"
-import { getUsers } from "./api"
+import React from "react"
 
-async function getData() {
-  const data = await getUsers()
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(data.results)
-    }, 1000)
-  })
-}
-
-export default async function Page() {
-  const data = await getData()
-  return (
-    <>
-      <Users users={data} />
-    </>
-  )
+export default function page() {
+  return <div>Home</div>
 }

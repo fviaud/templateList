@@ -87,7 +87,7 @@ function EnhancedTableToolbar(props) {
         </Typography>
       ) : (
         <Typography sx={{ flex: "1 1 100%" }} variant="h6" id="tableTitle" component="div">
-          Users
+          {/* Users */}
         </Typography>
       )}
 
@@ -159,14 +159,7 @@ export default function EnhancedTable({ users }) {
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={"small"}>
-            <EnhancedTableHead
-              numSelected={selected.length}
-              // order={order}
-              // orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              // onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
+            <EnhancedTableHead numSelected={selected.length} onSelectAllClick={handleSelectAllClick} rowCount={rows.length} />
             <TableBody>
               {rows.map((row, index) => {
                 const isItemSelected = isSelected(row.name)
