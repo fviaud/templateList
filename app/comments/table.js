@@ -18,6 +18,7 @@ import Tooltip from "@mui/material/Tooltip"
 import DeleteIcon from "@mui/icons-material/Delete"
 import FilterListIcon from "@mui/icons-material/FilterList"
 import LinearProgress from "@mui/material/LinearProgress"
+import Container from "@mui/material/Container"
 
 import { getComments } from "./api"
 
@@ -94,7 +95,7 @@ function EnhancedTableToolbar(props) {
 
 export default function EnhancedTable({ data }) {
   const dense = true
-  const rowsPerPage = 20
+  const rowsPerPage = 50
   const rowsMax = 1000
   const [selected, setSelected] = React.useState([])
   const [page, setPage] = React.useState(0)
@@ -156,8 +157,13 @@ export default function EnhancedTable({ data }) {
         <Box sx={{ width: "100%" }}>{loading ? <LinearProgress /> : <Box p={0.25}></Box>}</Box>
 
         <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
-          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={"small"}>
+        {/* <TableContainer>
+          <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={"small"}> */}
+
+        <TableContainer sx={{ maxHeight: 440 }}>
+          <Table stickyHeader aria-label="sticky table" size={"small"}>
+            {/* <TableContainer>
+          <Table stickyHeader aria-label="sticky table" size={"small"}> */}
             <EnhancedTableHead numSelected={selected.length} onSelectAllClick={handleSelectAllClick} rowCount={rows.length} />
             <TableBody>
               {rows.map((row, index) => {
