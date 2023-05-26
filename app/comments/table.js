@@ -152,70 +152,68 @@ export default function EnhancedTable({ data }) {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rowsMax) : 0
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%", mb: 2 }}>
-        <Box sx={{ width: "100%" }}>{loading ? <LinearProgress /> : <Box p={0.25}></Box>}</Box>
+    <Paper sx={{ width: "100%", mb: 2 }}>
+      <Box sx={{ width: "100%" }}>{loading ? <LinearProgress /> : <Box p={0.25}></Box>}</Box>
 
-        <EnhancedTableToolbar numSelected={selected.length} />
-        {/* <TableContainer>
+      <EnhancedTableToolbar numSelected={selected.length} />
+      {/* <TableContainer>
           <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={"small"}> */}
 
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table" size={"small"}>
-            {/* <TableContainer>
+      <TableContainer>
+        <Table stickyHeader aria-label="sticky table" size={"small"}>
+          {/* <TableContainer>
           <Table stickyHeader aria-label="sticky table" size={"small"}> */}
-            <EnhancedTableHead numSelected={selected.length} onSelectAllClick={handleSelectAllClick} rowCount={rows.length} />
-            <TableBody>
-              {rows.map((row, index) => {
-                const isItemSelected = isSelected(row.id)
-                const labelId = `enhanced-table-checkbox-${index}`
-                return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.id)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={index}
-                    selected={isItemSelected}
-                    sx={{ cursor: "pointer" }}>
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          "aria-labelledby": labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell component="th" id={labelId} scope="row" padding="none">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="right">{row.email}</TableCell>
-                  </TableRow>
-                )
-              })}
-              {emptyRows > 0 && (
+          <EnhancedTableHead numSelected={selected.length} onSelectAllClick={handleSelectAllClick} rowCount={rows.length} />
+          <TableBody>
+            {rows.map((row, index) => {
+              const isItemSelected = isSelected(row.id)
+              const labelId = `enhanced-table-checkbox-${index}`
+              return (
                 <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * emptyRows,
-                  }}>
-                  <TableCell colSpan={6} />
+                  hover
+                  onClick={(event) => handleClick(event, row.id)}
+                  role="checkbox"
+                  aria-checked={isItemSelected}
+                  tabIndex={-1}
+                  key={index}
+                  selected={isItemSelected}
+                  sx={{ cursor: "pointer" }}>
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      color="primary"
+                      checked={isItemSelected}
+                      inputProps={{
+                        "aria-labelledby": labelId,
+                      }}
+                    />
+                  </TableCell>
+                  <TableCell component="th" id={labelId} scope="row" padding="none">
+                    {row.name}
+                  </TableCell>
+                  <TableCell align="right">{row.email}</TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[]}
-          component="div"
-          // count={rows.length}
-          count={rowsMax}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          onPageChange={handleChangePage}
-        />
-      </Paper>
-    </Box>
+              )
+            })}
+            {emptyRows > 0 && (
+              <TableRow
+                style={{
+                  height: (dense ? 33 : 53) * emptyRows,
+                }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[]}
+        component="div"
+        // count={rows.length}
+        count={rowsMax}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        onPageChange={handleChangePage}
+      />
+    </Paper>
   )
 }
